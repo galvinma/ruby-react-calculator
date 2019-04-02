@@ -1,17 +1,17 @@
 module Calculator
-  def multiply(x,y)
+  def Calculator.multiply(x,y)
     return x*y
   end
 
-  def divide(x,y)
+  def Calculator.divide(x,y)
     return x/y
   end
 
-  def subtract(x,y)
+  def Calculator.subtract(x,y)
     return x-y
   end
 
-  def add(x,y)
+  def Calculator.add(x,y)
     return x+y
   end
 end

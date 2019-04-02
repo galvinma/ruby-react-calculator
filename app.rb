@@ -1,4 +1,6 @@
-# myapp.rb
+$LOAD_PATH << '.'
+require 'utils.rb'
+
 require 'sinatra'
 require "sinatra/cors"
 require 'json'
@@ -11,10 +13,22 @@ set :expose_headers, "location,link"
 post '/api/answer' do
   req = request.body.read
   json = JSON.parse(req)
-  entries = json["params"]['entries']
+  entries = json['params']['entries']
+  mode = json['params']['mode']
 
+  first = Integer(entries[0])
+  second = Integer(entries[1])
+  answer = 0
 
+  if mode == "MUL"
+    answer = Calculator.multiply(first, second)
+  elsif mode == "DIV"
+    answer = Calculator.divide(first, second)
+  elsif mode == "ADD"
+    answer = Calculator.add(first, second)
+  elsif mode == "SUB"
+    answer = Calculator.subtract(first, second)
+  end
 
-  {"answer" => "3"}.to_json
-
+  {"answer" => answer}.to_json
 end
